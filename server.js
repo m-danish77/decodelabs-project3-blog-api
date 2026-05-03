@@ -14,6 +14,13 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/api/auth", authRouter);
 app.use("/api/posts", postsRouter);
 
+// Error Controller
+app.use((req, res) => {
+  return res
+    .status(404)
+    .json({ message: "404 error. Requested Url not found" });
+});
+
 const port = process.env.PORT || 3000;
 const startSever = async () => {
   await connectDB();

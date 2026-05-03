@@ -6,7 +6,23 @@ info:
 http:
   method: POST
   url: "{{base_url}}/api/auth/login"
+  body:
+    type: json
+    data: |-
+      {
+        "email": "mmunibdanish456@gmail.com",
+        "password": "hello123"
+      }
   auth: inherit
+
+runtime:
+  scripts:
+    - type: after-response
+      code: |-
+        const response = res.getBody();
+        if (response.token) {
+          bru.setEnvVar("token", response.token);
+        }
 
 settings:
   encodeUrl: true

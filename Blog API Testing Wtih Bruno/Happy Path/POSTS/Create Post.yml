@@ -5,8 +5,17 @@ info:
 
 http:
   method: POST
-  url: ""
-  auth: inherit
+  url: "{{base_url}}/api/posts"
+  body:
+    type: json
+    data: |-
+      {
+        "title": "Coding Pro User",
+        "content": "Testing Purposes"
+      }
+  auth:
+    type: bearer
+    token: "{{token}}"
 
 settings:
   encodeUrl: true
