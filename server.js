@@ -3,15 +3,14 @@ import express from "express";
 
 // Local modules
 import connectDB from "./configs/mongoose.js";
+import authRouter from "./routes/authRoutes.js";
 
 const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use("/", (req, res, next) => {
-  res.send("1st response");
-});
+app.use("/api/auth", authRouter);
 
 const port = process.env.PORT || 3000;
 const startSever = async () => {
